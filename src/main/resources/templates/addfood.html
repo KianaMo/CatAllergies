@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" />
+<link type="text/css" rel="stylesheet" href="/css/cat.style.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h5 class="text-left">Hello <span sec:authentication="name"></span>!</h5>
+<div class="divider py-1 bg-dark"></div>
+<h3>Add food</h3>
+<div class="form-container">
+ <form th:object="${food}" th:action="@{save}" action="#" method="post"> 
+ <div class="form-group">
+	 <label for="brand">Brand<input class="form-control" type="text" id="brand" th:field="*{brand}" /></label>
+ </div>
+ <div class="form-group">
+	 <label for="ingredient">Ingredient<input class="form-control" type="text" id="ingredient" th:field="*{ingredient}" /></label>
+ </div>
+ <div class="form-group">
+	 <label for="weight">Weight<input class="form-control" type="text" id="weight" th:field="*{weight}" /></label> 
+ </div>
+ <div class="form-group">
+	 <label for="fidate">Date<input class="form-control" type="date" id="fidate" th:field="*{fidate}" /></label>
+ </div>
+ <div class="form-group">
+	 <label for="categorylist">Category<select id="categorylist" th:field="*{foodCategory}" class="form-control"> <option th:each="category: ${categories}" th:value="${category.id}"
+	 th:text="${category.name}"></option>
+		</select></label>
+ </div>
+ <div class="form-group">
+	 <label for="symptom">Symptom<input class="form-control" type="text" id="symptom" th:field="*{symptom}" /></label> 
+ </div>
+ <input class="btn btn-primary" type="submit" value="Save"></input>
+ </form>
+</div>
+</body>
+</html>

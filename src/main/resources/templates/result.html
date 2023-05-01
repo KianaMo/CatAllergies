@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link type="text/css" rel="stylesheet" href="/css/foodlist.css"/>
+<title>Server Programming with Spring Boot</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h5 class="text-left">Hello <span sec:authentication="name"></span>!</h5>
+	<div class="divider py-1 bg-dark"></div>
+	<div>Food List:</div>
+	<table>
+		<tr th:each="food : ${foods}">
+			<td th:text="${food.brand}"></td>
+			<td th:text="${food.ingredient}"></td>
+			<td th:text="${food.weight}"></td>
+			<td th:text="${food.fidate}"></td>
+			<td th:text="${food.symptom}"></td>
+		</tr>
+	</table>
+	
+	<div>Add new food:</div>
+	<form th:action="@{/index}" th:object="${food}" method="post">
+		<p>Brand: <input type="text" th:name="|Brand|" /></p>
+		<p>Ingredient: <input type="text" th:name="|Ingredient|" /></p>
+		<p>Weight: <input type="text" th:name="|Weight|" /></p>
+		<p>Date: <input type="text" th:name="|Date|" /></p>
+		<p>Symptom: <input type="text" th:name="|Symptom|" /></p>
+		<p><input type="submit" value="Add new food" /></p>
+	</form>		
+</body>
+</html>

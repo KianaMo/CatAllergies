@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" />
+<link type="text/css" rel="stylesheet" href="/css/cat.style.css" />
+<title>Cat Food Allergies</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h5 class="text-left">Hello <span sec:authentication="name"></span>!</h5>
+	<div class="divider py-1 bg-dark"></div>
+	<h3 class="text-center">Cat Food Intake List</h3>
+	<table class="table table-hover">
+		<tbody>
+			<tr>
+				<th scope="col">Brand</th>
+				<th scope="col">Ingredient</th>
+				<th scope="col">Weight</th>
+				<th scope="col">Category</th>
+				<th scope="col">Date</th>
+				<th scope="col">Symptom</th>
+			</tr>
+			<tr th:each="food : ${foods}">
+				<td scope="row" th:text="${food.brand}"></td>
+				<td th:text="${food.ingredient}"></td>
+				<td th:text="${food.weight}"></td>
+				<td th:text="${food.foodCategory.name}"></td>
+				<td th:text="${food.fidate}"></td>
+				<td th:text="${food.symptom}"></td>
+				<td sec:authorize='hasRole("ADMIN")'><a class="btn btn-danger" th:href="@{/delete/{id}(id=${food.id})}">Delete</a></td>
+				<td><a class="btn btn-secondary" th:href="@{/edit/{id}(id=${food.id})}">Edit</a></td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="text-center button-box">
+		<a href="/add" class="btn btn-primary">Add Food</a>
+		<div class="btn">
+			<form th:action="@{/logout}" method="post">
+				<input class="btn btn-primary" type="submit" value="Sign Out"/>
+			</form>
+		</div>
+	</div>
+
+</body>
+</html>

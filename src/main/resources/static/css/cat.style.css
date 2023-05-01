@@ -1,0 +1,27 @@
+table.table 
+{ 
+	width:auto;
+	margin: auto;
+}
+
+h3
+{
+	margin: 20px;
+}
+
+h5{
+	margin: 10px;
+}
+
+.login-msg
+{
+	margin: 20px;
+}
+
+label{
+	text-align: left;
+}
+
+.form-container{
+	margin: 20px
+}
